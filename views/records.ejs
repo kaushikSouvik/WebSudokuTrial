@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<style >
+	
+	table, th, td {
+	  border:1px solid black; padding: auto;
+	}
+
+</style>
+
+
+	<div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+        {% if records %}
+            <div class="list-group">
+				{% for record in records %}
+				
+				Difficulty : {{record.difficulty}}
+				Points Scored : {{record.points}}&nbsp&nbsp
+				Remaining Time : {{record.timer}}&nbsp&nbsp
+				Remaining life : {{record.life}}&nbsp&nbsp
+				Date : {{record.date}}
+				<br>
+				{% endfor %}
+			</div>
+		{% else %}
+            <div class="text-center">
+                <h2>Looks like you haven't played any matches! Play now.</h2>
+            <br>
+            <a role="button" class="btn btn-primary" href="{% url 'newgame' %}">New Game</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<%- include('partials/footer') %>
