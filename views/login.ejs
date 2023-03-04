@@ -10,10 +10,10 @@
         <div class="col-md-5">
             <% if (error){ %>
                 <div class="alert alert-danger" role="alert">
-                    <%= error %>
+                    <%= errorMsg %>
                 </div>
             <% } %>
-            <form method="POST">
+            <form method="POST" action="/login">
                 
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -27,7 +27,7 @@
             </form>
             <hr>
             <div class="text-center">
-                Need an account? <a href="/signupuser">Sign Up here</a>
+                Need an account? <a href="/register">Sign Up here</a>
             </div>
         </div>
     </div>

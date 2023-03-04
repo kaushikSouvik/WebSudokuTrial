@@ -22,7 +22,7 @@
 
 <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
 <div class="container">
-    <a class="navbar-brand" href="/testing">
+    <a class="navbar-brand" href="/">
          <!--<img src="{% static 'logo.JPG' %}" width="40" height="34" class="d-inline-block align-top">-->
         <span>SUDOKU-X</span>
     </a>
@@ -34,15 +34,15 @@
         <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item {{ current }}">
-                    <a class="nav-link" href="/testing/newgame">New Game</a>
+                    <a class="nav-link" href="/newgame">New Game</a>
                 </li>
 
                 <li class="nav-item {{ current }}">
-                    <a class="nav-link" href="/testing/records">Records</a>
+                    <a class="nav-link" href="/records">Records</a>
                 </li>
 
                 <li class="nav-item {{ current }}">
-                    <a class="nav-link" href="/testing/howtoplay">How to Play?</a>
+                    <a class="nav-link" href="/howtoplay">How to Play?</a>
                 </li>
                 
 
@@ -66,10 +66,10 @@
                 </li>
                 <% } else{ %>
                 <li class="nav-item">
-                    <a class="nav-link" href="/testing/signup">Sign Up</a>
+                    <a class="nav-link" href="/register">Sign Up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/testing/login">Login</a>
+                    <a class="nav-link" href="/login">Login</a>
                 </li>
                 <% } %>
 

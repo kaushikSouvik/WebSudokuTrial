@@ -21,15 +21,15 @@
 					Remaining life : <%= record.life %>&nbsp&nbsp
 					Date : <%= record.date %>
 				<br>
-				<% }) %>
+				<% })  } %>
 			</div>
-		{% else %}
+		<% else {%>
             <div class="text-center">
                 <h2>Looks like you haven't played any matches! Play now.</h2>
             <br>
-            <a role="button" class="btn btn-primary" href="{% url 'newgame' %}">New Game</a>
+            <a role="button" class="btn btn-primary" href="/newgame">New Game</a>
             </div>
-        {% endif %}
+        <% } %>
     </div>
 </div>
 

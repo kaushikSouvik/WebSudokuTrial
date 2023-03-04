@@ -46,7 +46,7 @@ app.use(passport.session());
 //const uri= process.env.URI;
 //mongoose.connect(uri, {useNewUrlParser: true}); 
 
-mongoose.connect("mongodb://0.0.0.0:27017/sudokuDb", {useNewUrlParser: true}); 
+mongoose.connect("mongodb://0.0.0.0:27017/sudokuDb", {useNewUrlParser: true}). catch (error => console.log(error)); 
 
 //-------------------------------SCHEMA----------------------------------
 const userSchema= new mongoose.Schema({
@@ -90,11 +90,11 @@ app.route("/")
     });
    
 //------------------------------------REGISTER/SIGNUP ROUTE---------------------------------
-app.route("/signup")
+app.route("/register")
     .get(function(req, res){
         if(req.isAuthenticated())   res.redirect("/");
         else    
-            res.render("signupuser", {isItAuthenticated: req.isAuthenticated()});
+            res.render("register", {isItAuthenticated: req.isAuthenticated(), error:false, errorMsg:""});
     })
 
     .post(function(req, res){
@@ -102,12 +102,12 @@ app.route("/signup")
         User.register({username: req.body.username}, req.body.password, function(err, user){
             if(err){
                 console.log(err);
-                res.render("register", {isItAuthenticated: false,err: true});
+                res.render("register", {isItAuthenticated: false,error: true, errorMsg: "Username already exists!"});
             }
             else{
                 passport.authenticate("local", {failureRedirect: '/register'})(req, res, function(){
                     //res.locals.user= req.user;
-                    res.redirect("/secrets");
+                    res.redirect("/");
                 });
             }
         });
@@ -121,7 +121,7 @@ app.route("/login")
             res.redirect("/");
         }
         else{
-            res.render("login", {isItAuthenticated: false, err: false});
+            res.render("login", {isItAuthenticated: false, error: false, errorMsg:""});
         }
     })
 
@@ -132,19 +132,19 @@ app.route("/login")
         })
         passport.authenticate('local', function(err, user, info) {
     
-            if(err) { res.render('login', {err: true, isItAuthenticated: false}); }
+            if(err) { res.render('login', {error: true, errorMsg:"Invalid Credentials" ,isItAuthenticated: false}); }
             if(user){
                 req.logIn(user, function(err) {
-                    if (err) { res.render('login', {err: true, isItAuthenticated: false}); }
+                    if (err) { res.render('login', {error: true, errorMsg:"Invalid Credentials" , isItAuthenticated: false}); }
                     else {
                         //res.locals.user= req.user;
-                        res.redirect('/secrets');
+                        res.redirect('/');
                     }
                 });
             }
             else{ 
                 //Incorrect credentials, hence redirect to login 
-                return res.render('login', {err: true, isItAuthenticated: false});; 
+                return res.render('login', {error: true, errorMsg:"Invalid Credentials", isItAuthenticated: false});; 
             }
             
         })(req, res);
@@ -173,7 +173,7 @@ app.route("/logout")
             res.render("newgame");
         }
         else{
-            res.render("/login", {isItAuthenticated: false});
+            res.render("login", {isItAuthenticated: false});
         }
     });
 
@@ -217,11 +217,11 @@ app.route("/testing")
         res.render("home", {isItAuthenticated: true});
     });
 //------------------------------------REGISTER/SIGNUP ROUTE---------------------------------
-app.route("/testing/signup")
+app.route("/testing/register")
 .get(function(req, res){
-    if(req.isAuthenticated())   res.redirect("/");
+    if(req.isAuthenticated())   res.redirect("/testing");
     else    
-        res.render("signupuser", {isItAuthenticated: req.isAuthenticated()});
+        res.render("register", {isItAuthenticated: req.isAuthenticated(), error: false});
 })
 
 .post(function(req, res){
@@ -229,16 +229,18 @@ app.route("/testing/signup")
     User.register({username: req.body.username}, req.body.password, function(err, user){
         if(err){
             console.log(err);
-            res.render("register", {isItAuthenticated: false,err: true});
+            res.render("register", {isItAuthenticated: false,error: true, errorMsg: "Invalid Credentials"});
         }
         else{
-            passport.authenticate("local", {failureRedirect: '/testing/register'})(req, res, function(){
+            passport.authenticate("local", {failureRedirect: '/register'})(req, res, function(){
                 //res.locals.user= req.user;
-                res.redirect("/testing");
+                res.redirect("/");
             });
         }
     });
 });
+
+
 
 //-----------------------------------------LOGIN ROUTE-------------------------------------
 app.route("/testing/login")
