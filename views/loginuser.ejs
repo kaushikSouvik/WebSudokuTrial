@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-{% block content %}
+
     <div class="row justify-content-center mt-5">
         <div class="col-md-5">
             <h2>Login</h2>
@@ -8,13 +8,13 @@
     </div>
     <div class="row justify-content-center mt-5">
         <div class="col-md-5">
-            {% if error %}
+            <% if (error){ %>
                 <div class="alert alert-danger" role="alert">
-                    {{ error }}
+                    <%= error %>
                 </div>
-            {% endif %}
+            <% } %>
             <form method="POST">
-                {% csrf_token %}
+                
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" name="username" class="form-control" id="username">
@@ -27,7 +27,7 @@
             </form>
             <hr>
             <div class="text-center">
-                Need an account? <a href="{% url 'signupuser' %}">Sign Up here</a>
+                Need an account? <a href="/signupuser">Sign Up here</a>
             </div>
         </div>
     </div>

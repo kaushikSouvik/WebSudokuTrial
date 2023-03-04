@@ -11,17 +11,17 @@
 
 	<div class="row justify-content-center mt-5">
         <div class="col-md-10">
-        {% if records %}
+        <% if(records){ %>
             <div class="list-group">
-				{% for record in records %}
+				<% records.forEach(function(record){ %>
 				
-				Difficulty : {{record.difficulty}}
-				Points Scored : {{record.points}}&nbsp&nbsp
-				Remaining Time : {{record.timer}}&nbsp&nbsp
-				Remaining life : {{record.life}}&nbsp&nbsp
-				Date : {{record.date}}
+					Difficulty : <%= record.difficulty %>
+					Points Scored : <%= record.points %>&nbsp&nbsp
+					Remaining Time : <%= record.timer %>&nbsp&nbsp
+					Remaining life : <%= record.life %>&nbsp&nbsp
+					Date : <%= record.date %>
 				<br>
-				{% endfor %}
+				<% }) %>
 			</div>
 		{% else %}
             <div class="text-center">

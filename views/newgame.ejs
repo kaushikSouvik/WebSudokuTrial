@@ -3,8 +3,7 @@
 <h2>Game Requirements</h2>
 
 <br>
-<form method="POST" method="POST" action="{% url 'startgame' %}">
-	{% csrf_token %}
+<form method="POST" method="POST" action="/startgame">
 	Difficulty: &nbsp&nbsp<input type="checkbox" name="easy"/>Easy 
 	&nbsp<input type="checkbox" name="medium"/>Medium
 	&nbsp<input type="checkbox" name="hard"/>Hard

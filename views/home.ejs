@@ -25,9 +25,9 @@
             <h5>Come and play SUDOKU online here,for FREE!</h5>
             <% if(isItAuthenticated){ %>
                 
-        <a role="button" class="btn btn-primary btn-lg" href="<% url 'newgame' %>">New Game</a>
+        <a role="button" class="btn btn-primary btn-lg" href="/newgame">New Game</a>
             <% }else{ %>
-        <a role="button" class="btn btn-primary btn-lg" href="<% url 'signupuser' %>">Start</a>
+        <a role="button" class="btn btn-primary btn-lg" href="/signupuser">Start</a>
             <% } %>
         </div>
     </div>
